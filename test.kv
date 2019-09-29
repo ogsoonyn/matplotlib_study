@@ -5,12 +5,12 @@ TextWidget:
         orientation: 'vertical'
         size: root.size
         
-        Label: # comment
-            text: "Hello world.1"
-            color: 1,0,1,1 #rgba
+#        Label: # comment
+#            text: "Hello world.1"
+#            color: 1,0,1,1 #rgba
 
         Label:
-            text: "Center."
+            text: "Drag & Drop csv-file to this window!"
             color: 0,0,0,1
             canvas.before:
                 Color:
@@ -19,13 +19,13 @@ TextWidget:
                     pos: self.pos
                     size: self.size
 
-        Label:
-            text: root.text
-            color: 1,1,0,1
+#        Label:
+#            text: root.text
+#            color: 1,1,0,1
 
 
-        Button:
-            id: button1
-            text: "Click to hogehoge"
-            font_size: 30
-            on_press: root.buttonClicked()
+#        Button:
+#            id: button1
+#            text: "Click to hogehoge"
+#            font_size: 30
+#            on_press: root.buttonClicked()
