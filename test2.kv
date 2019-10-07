@@ -1,0 +1,56 @@
+<Display>:
+    CheckBox:
+#        group: "gp01"
+        id: g0
+        size: 10,10
+        pos: 10,130
+        active: 1
+
+        Label:
+            size: self.texture_size
+            pos: 40,125
+            text: '0x48'
+        Label:
+            id: l0
+            size: self.texture_size
+            pos: 100,125
+            text: 'xx\'C'
+#------------------------------------------
+    CheckBox:
+#        group: "gp01"
+        id: g1
+        size: 10,10
+        pos: 10,100
+
+        Label:
+            size: self.texture_size
+            pos: 40,95
+            text: '0x49'
+        Label:
+            id: l1                   
+            size: self.texture_size
+            pos: 100,95
+            text: 'xx\'C'
+#------------------------------------------
+    CheckBox:
+#        group: "gp01"
+        id: g2
+        size: 10,10
+        pos: 10,70
+
+        Label:
+            size: self.texture_size
+            pos: 40,65
+            text: '0x4A'
+        Label:
+            id: l2                   
+            size: self.texture_size
+            pos: 100,65
+            text: 'xx\'C'
+#------------------------------------------
+
+    Button:
+        text: "Measure"
+        size:   100,30
+        pos:    25,5
+        on_release: root.on_measure()  

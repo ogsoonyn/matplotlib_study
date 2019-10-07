@@ -4,75 +4,63 @@ import numpy as np
 import seaborn as sns
 import pandas as pd
 
-def showChart(file_name):
-    # csvファイルをヘッダなしで読み込み
-    csv_input = pd.read_csv(filepath_or_buffer=file_name, encoding="ms932", sep=",", header=None)
+class MyChart():
+    source_file_name = None
 
-    # チャート表示をきれいにする？
-    sns.set_style("whitegrid")
+    type_string = "line"
 
-    # チャート名を表示
-    plt.title(file_name)
+    chart_title = "sample chart"
 
-    # チャートの縦横比を固定
-    plt.axes().set_aspect('equal', 'datalim')
+    change_color_per_stroke = True
 
-    # 3列目が"U"のデータの行数を抽出して、そこでplotを区切る
-    # "U"出現ごとにプロットマークを変える
-    prev = 0
-    mark_A = "o"
-    mark_B = "x"
-    mark = mark_A
+    invert_xaxis = False
+    invert_yaxis = True
 
-    for i in csv_input.loc[csv_input[2]=="U"].index :
-        x = csv_input.iloc[:, 0].head(i).tail(i-prev)
-        y = csv_input.iloc[:, 1].head(i).tail(i-prev)
-        plt.plot(x, y, marker=None, lineStyle="solid")
-        #plt.plot(x, y, marker=mark, lineStyle="none") # marker
-        prev = i+1
-        mark = mark_B if mark == mark_A else mark_A
+    fix_aspect_ratio = True
 
-    # 表示
-    plt.show()
+    def showChart(self):
+        # csvファイルをヘッダなしで読み込み
+        csv_input = pd.read_csv(filepath_or_buffer=self.source_file_name, encoding="ms932", sep=",", header=None)
 
-    return
+        # チャート表示をきれいにする？
+        sns.set_style("whitegrid")
 
-def showChart2(file_name):
-    # csvファイルをヘッダなしで読み込み
-    csv_input = pd.read_csv(filepath_or_buffer=file_name, encoding="ms932", sep=",", header=None)
+        # チャート名を表示
+        fig = plt.figure()
 
-    # チャート表示をきれいにする？
-    sns.set_style("whitegrid")
+        ax = fig.add_subplot(111)
+        ax.set_title(self.chart_title)
 
-    # チャート名を表示
-    fig = plt.figure()
+        # チャートの縦横比を固定
+        if self.fix_aspect_ratio:
+            ax.set_aspect('equal', 'datalim')
 
-    ax = fig.add_subplot(111)
-    ax.set_title(file_name)
+        # X, Y軸を反転させる
+        if self.invert_xaxis:
+            ax.invert_xaxis()
+        if self.invert_yaxis:
+            ax.invert_yaxis()
+        
+        # 3列目が"U"のデータの行数を抽出して、そこでplotを区切る
+        # "U"出現ごとにプロットマークを変える
+        prev = 0
+        mark_A = "o"
+        mark_B = "x"
+        mark = mark_A
 
-    # チャートの縦横比を固定
-    ax.set_aspect('equal', 'datalim')
+        for i in csv_input.loc[csv_input[2]=="U"].index :
+            x = csv_input.iloc[:, 0].head(i).tail(i-prev)
+            y = csv_input.iloc[:, 1].head(i).tail(i-prev)
 
-    # Y軸を反転させる
-    ax.invert_yaxis()
-    
-    # 3列目が"U"のデータの行数を抽出して、そこでplotを区切る
-    # "U"出現ごとにプロットマークを変える
-    prev = 0
-    mark_A = "o"
-    mark_B = "x"
-    mark = mark_A
+            if self.type_string == "line" :
+                ax.plot(x, y, marker=None, lineStyle="solid")
+            elif self.type_string == "point" :
+                ax.plot(x, y, marker=mark, lineStyle="none")
+            else :
+                ax.plot(x, y, marker=".", lineStyle="none")
 
-    for i in csv_input.loc[csv_input[2]=="U"].index :
-        x = csv_input.iloc[:, 0].head(i).tail(i-prev)
-        y = csv_input.iloc[:, 1].head(i).tail(i-prev)
-        ax.plot(x, y, marker=None, lineStyle="solid")
-        #plt.plot(x, y, marker=mark, lineStyle="none") # marker
-        prev = i+1
-        mark = mark_B if mark == mark_A else mark_A
+            prev = i+1
+            mark = mark_B if mark == mark_A else mark_A
 
-    # 表示
-    #plt.show(block=False) #blockは廃止予定
-    plt.show()
-
-    return
+        # 表示
+        plt.show()
