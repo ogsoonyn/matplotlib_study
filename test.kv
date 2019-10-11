@@ -5,7 +5,7 @@ TextWidget:
     BoxLayout:
         orientation: 'vertical'
         size: root.size
-        
+
 #        Label: # comment
 #            text: "Hello world.1"
 #            color: 1,0,1,1 #rgba
@@ -20,6 +20,11 @@ TextWidget:
                 Rectangle:
                     pos: self.pos
                     size: self.size
+
+        Button:
+            text: "Show Previous Chart"
+            on_press: root.show_previous_chart()
+            size_hint_y: 0.1
 
         BoxLayout:
             orientation: 'horizontal'
@@ -78,7 +83,7 @@ TextWidget:
         BoxLayout:
             orientation: 'horizontal'
             size_hint_y: 0.1
-            
+
             CheckBox:
                 id: cb_invert_x
                 on_press: root._on_clicked()
@@ -99,11 +104,20 @@ TextWidget:
                 valign: 'center'
 
             CheckBox:
+                id: cb_xy_swap
+                on_press: root._on_clicked()
+            Label:
+                text: "X-Y Swap"
+                text_size: self.size
+                halign: 'left'
+                valign: 'center'
+
+            CheckBox:
                 id: cb_color_per_stroke
                 active: True
                 on_press: root._on_clicked()
             Label:
-                text: "Change Color per Stroke"
+                text: "Colorful mode"
                 text_size: self.size
                 halign: 'left'
                 valign: 'center'

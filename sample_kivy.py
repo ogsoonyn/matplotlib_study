@@ -37,6 +37,7 @@ class TextWidget(Widget):
         chart.invert_xaxis = self.ids.cb_invert_x.active
         chart.invert_yaxis = self.ids.cb_invert_y.active
         chart.change_color_per_stroke = self.ids.cb_color_per_stroke.active
+        chart.xy_swap = self.ids.cb_xy_swap.active
 
     def get_radiobutton_status(self):
         if self.ids.gtype_line.active:
@@ -50,8 +51,12 @@ class TextWidget(Widget):
         else:
             return "default"
 
+    def show_previous_chart(self):
+        chart = SignletonMyChart()
+        chart.showChart()
+
 class TestApp(App):
-    executor = concurrent.futures.ThreadPoolExecutor(max_workers=5)
+    #executor = concurrent.futures.ThreadPoolExecutor(max_workers=5)
 
     def __init__(self, **kwargs):
         super(TestApp, self).__init__(**kwargs)
@@ -68,6 +73,7 @@ class TestApp(App):
 
         chart = SignletonMyChart()
         chart.source_file_name = file_path.decode('utf-8')
+        chart.chart_title = file_path.decode('utf-8')
         chart.showChart()
         #mychart.showChart2(file_path.decode('utf-8'), typ)
         #print(file_path.decode('utf-8'))
