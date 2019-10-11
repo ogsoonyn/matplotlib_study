@@ -34,17 +34,20 @@ class TextWidget(Widget):
     def _on_clicked(self):
         chart = SignletonMyChart()
         chart.type_string = self.get_radiobutton_status()
-        chart.invert_xaxis = self.ids.g3.active
-        chart.invert_yaxis = self.ids.g4.active
+        chart.invert_xaxis = self.ids.cb_invert_x.active
+        chart.invert_yaxis = self.ids.cb_invert_y.active
+        chart.change_color_per_stroke = self.ids.cb_color_per_stroke.active
 
-    # ここならRadioButtonの情報を取れるが、
-    # Drag&Dropの処理がTestApp内なので、どう処理するか。。。
     def get_radiobutton_status(self):
-        if self.ids.g0.active:
+        if self.ids.gtype_line.active:
             return "line"
-        elif self.ids.g1.active:
-            return "point"
-        elif self.ids.g2.active:
+        elif self.ids.gtype_ox.active:
+            return "circlecross"
+        elif self.ids.gtype_plus.active:
+            return "pluscross"
+        elif self.ids.gtype_period.active:
+            return "period"
+        else:
             return "default"
 
 class TestApp(App):

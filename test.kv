@@ -23,51 +23,90 @@ TextWidget:
 
         BoxLayout:
             orientation: 'horizontal'
-            size_hint_y: 0.2
+            size_hint_y: 0.1
 
             CheckBox:
-                id: g0
+                id: gtype_line
                 group: "grp1"
                 active: True
                 on_press: root._on_clicked()
-
             Label:
                 text: "Line"
+                text_size: self.size
+                halign: 'left'
+                valign: 'center'
 
             CheckBox:
-                id: g1
+                id: gtype_ox
                 group: "grp1"
                 on_press: root._on_clicked()
-
-
             Label:
                 text: "o / x"
+                text_size: self.size
+                halign: 'left'
+                valign: 'center'
 
             CheckBox:
-                id: g2
+                id: gtype_plus
                 group: "grp1"
                 on_press: root._on_clicked()
-
             Label:
-                text: "point"
+                text: "+ / x"
+                text_size: self.size
+                halign: 'left'
+                valign: 'center'
 
+            CheckBox:
+                id: gtype_period
+                group: "grp1"
+                on_press: root._on_clicked()
+            Label:
+                text: "Period"
+                text_size: self.size
+                halign: 'left'
+                valign: 'center'
+
+            CheckBox:
+                id: gtype_circle
+                group: "grp1"
+                on_press: root._on_clicked()
+            Label:
+                text: "Circle"
+                text_size: self.size
+                halign: 'left'
+                valign: 'center'
         BoxLayout:
             orientation: 'horizontal'
-            size_hint_y: 0.2
+            size_hint_y: 0.1
             
             CheckBox:
-                id: g3
+                id: cb_invert_x
                 on_press: root._on_clicked()
-
             Label:
                 text: "Invert X-Axis"
+                text_size: self.size
+                halign: 'left'
+                valign: 'center'
 
             CheckBox:
-                id: g4
+                id: cb_invert_y
                 active: True
                 on_press: root._on_clicked()
             Label:
                 text: "Invert Y-Axis"
+                text_size: self.size
+                halign: 'left'
+                valign: 'center'
+
+            CheckBox:
+                id: cb_color_per_stroke
+                active: True
+                on_press: root._on_clicked()
+            Label:
+                text: "Change Color per Stroke"
+                text_size: self.size
+                halign: 'left'
+                valign: 'center'
 
 #        Label:
 #            text: root.text
