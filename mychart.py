@@ -1,8 +1,11 @@
+# -*- coding: utf-8 -*-
+
 # チャート関係
 import matplotlib.pyplot as plt
 import numpy as np
 import seaborn as sns
 import pandas as pd
+import japanize_matplotlib
 
 class MyChart():
     # csvファイルパス
@@ -35,8 +38,8 @@ class MyChart():
         # csvファイルをヘッダなしで読み込み
         csv_input = pd.read_csv(filepath_or_buffer=self.source_file_name, encoding="ms932", sep=",", header=None)
 
-        # チャート表示をきれいにする？
-        sns.set_style("whitegrid")
+        # チャート表示を白地に黒グリッドに、日本語表記を維持
+        sns.set(font="IPAexGothic", style="whitegrid")
 
         # チャート名を表示
         fig = plt.figure()
@@ -92,6 +95,6 @@ class MyChart():
             x = csv_input.iloc[:,0]
             y = csv_input.iloc[:,1]
             ax.plot(x,y,marker=".", lineStyle="none")
-        
+
         # 表示
         plt.show()

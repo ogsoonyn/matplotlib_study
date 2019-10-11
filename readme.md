@@ -15,7 +15,7 @@ D&Dしたファイルをチャート表示する。
 matplotlib関連のパッケージをインストール。
 
 ```shell
-pip install matplotlib pandas numpy seaborn
+pip install matplotlib pandas numpy seaborn japanize-matplotlib
 ```
 
 kivy関連のパッケージをインストール。
