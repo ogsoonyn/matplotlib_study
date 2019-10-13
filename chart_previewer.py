@@ -57,11 +57,11 @@ class TextWidget(Widget):
         chart = SignletonMyChart()
         chart.showChart()
 
-class TestApp(App):
+class Chart_previewerApp(App):
     #executor = concurrent.futures.ThreadPoolExecutor(max_workers=5)
 
     def __init__(self, **kwargs):
-        super(TestApp, self).__init__(**kwargs)
+        super(Chart_previewerApp, self).__init__(**kwargs)
         self.title = "csv2chart"
         self._file = Window.bind(on_dropfile = self._on_file_drop)
 
@@ -86,4 +86,4 @@ class TestApp(App):
         return TextWidget()
 
 if __name__ == '__main__':
-    TestApp().run()
+    Chart_previewerApp().run()
